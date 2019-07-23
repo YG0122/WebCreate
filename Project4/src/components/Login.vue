@@ -10,7 +10,7 @@
           <img alt="Google Logo" src="../assets/google-logo.png">
         </button>
       </p>
-      <p>Don't you have an account? You can <router-link to="/sign-up">create one</router-link></p>
+      <p>Don't you have an account? You can create one <button @click="signUp">Sign Up</button></p>
   </div> 
 </template>
 
@@ -63,6 +63,17 @@ export default {
       }).catch((err) => {
         alert('Oops. ' + err.message)
       })
+    },
+    signUp () {
+      const uid = this.$route.params.userid
+      console.log('signUp this.$router :', this.$router)
+      if (uid === '1') {
+        this.$router.replace('../1/sign-up')
+        console.log('signUp this.$router after 1:', this.$router)
+      } else {
+        this.$router.replace('../' + uid + '/sign-up')
+        console.log('signUp this.$router after uid:', this.$router)
+      }
     }
   }
 }
