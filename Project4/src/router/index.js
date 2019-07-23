@@ -40,7 +40,7 @@ const router = new Router({
       path: '*',
       redirect: '/login',
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -60,11 +60,22 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   const currentUser = firebase.auth().currentUser
+  console.log('current user :', currentUser)
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+  console.log('requiresAuth :', requiresAuth)
 
-  if (requiresAuth && !currentUser) next('login')
-  else if (!requiresAuth && currentUser) next('hello')
-  else next()
+  if (currentUser) console.log('parent uid :', currentUser.email.substring(0, 28))
+  if (requiresAuth && !currentUser) {
+    console.log('going uid + login')
+    next('login')
+  } else if (!requiresAuth && currentUser) {
+    console.log('going uid')
+    // next(currentUser.email.substring(0, 28))
+    next('hello')
+  } else {
+    console.log('going next')
+    next()
+  }
 })
 
 export default router

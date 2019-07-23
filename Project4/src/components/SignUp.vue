@@ -25,22 +25,22 @@ export default {
   },
   methods: {
     SignUp () {
-      if (this.$route.params.userid === '1') {
+      const uid = this.$route.params.userid
+      if (uid === '1') {
         firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
           .then(
             (user) => {
-              user.uid
-              this.$router.replace('hello')
+              this.$router.replace('../hello')
             },
             (err) => {
               alert('Oops. ' + err.message)
             }
           )
       } else {
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+        firebase.auth().createUserWithEmailAndPassword(uid + '_' + this.email, this.password)
           .then(
             (user) => {
-              this.$router.replace(this.$route.params.userid)
+              this.$router.replace('../' + uid)
             },
             (err) => {
               alert('Oops. ' + err.message)

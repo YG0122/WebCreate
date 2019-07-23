@@ -26,21 +26,28 @@ export default {
   },
   methods: {
     login () {
-      if (this.$route.params.userid == '1') {
+      const uid = this.$route.params.userid
+      if (uid === '1') {
         console.log('Login.vue/login()')
+        console.log('current this.$router before :', this.$router)
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
           (user) => {
-            this.$router.replace('hello')
+            console.log('login, 1, then')
+            console.log('current this.$router :', this.$router)
+            this.$router.replace('../hello')
+            console.log('current this.$router now :', this.$router)
           },
           (err) => {
+            console.log('login, 1, err')
             alert('Oops. ' + err.message)
           }
         )
       } else {
-        console.log('Login.vue/login()//uid : ', this.$route.params.userid)
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+        console.log('Login.vue/login()//uid : ', uid)
+        firebase.auth().signInWithEmailAndPassword(uid + '_' + this.email, this.password).then(
           (user) => {
-            this.$router.replace(this.$route.params.userid)
+            console.log('before replacing to userid')
+            this.$router.replace('../' + uid)
           },
           (err) => {
             alert('Oops. ' + err.message)
