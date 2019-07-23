@@ -1,6 +1,7 @@
 <template>
   <div>
     <home2-vue></home2-vue>
+    <image-upload></image-upload>
     <div class="home">
       <button @click='id'>idid
       </button>
@@ -12,6 +13,8 @@
 import firebase from 'firebase'
 import Home2Vue from './Home2.vue'
 import Login from './Login'
+import ImageUpload from './ImageUpload.vue'
+
 // import db from '../main'
 export default {
   name: 'home',
@@ -24,7 +27,8 @@ export default {
   },
   components: {
     Home2Vue,
-    Login
+    Login,
+    ImageUpload
   },
   methods: {
     logout () {
