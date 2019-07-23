@@ -63,7 +63,7 @@ a {
 button {
   padding: 10px 20px;
   background: #BED38E;
-  color: white;
+  color: #59754D;
   font-weight: bold;
   border: none;
   border-radius: 22px;

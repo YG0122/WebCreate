@@ -91,7 +91,14 @@ export default {
   }
   button {
     margin-top: 20px;
-    width: 10%;
+    width: 5%;
+    padding: 10px 20px;
+    background: #BED38E;
+    color: #59754D;
+    font-weight: bold;
+    border: none;
+    border-radius: 22px;
+    outline: 0;
     cursor: pointer;
   }
   p {
