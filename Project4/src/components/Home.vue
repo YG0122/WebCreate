@@ -2,33 +2,48 @@
   <div>
     <home2-vue></home2-vue>
     <image-upload></image-upload>
-    <div class="home">
-      <button @click='id'>idid
-      </button>
+    <loginButton v-if="ifLogin === null"></loginButton>
+    
+    <div v-else>
+      <logoutButton v-on:logout-status="refresh"></logoutButton>
     </div>
+
   </div>
 </template>
 
 <script>
 import firebase from 'firebase'
 import Home2Vue from './Home2.vue'
-import Login from './Login'
 import ImageUpload from './ImageUpload.vue'
+import LoginButton from './LoginButton'
+import LogoutButton from './LogoutButton'
 
-// import db from '../main'
 export default {
   name: 'home',
   data () {
     return {
       msg: 'Welcome to Your Vue.js PWA',
       age: null,
-      color: null
+      color: null,
+      ifLogin: null
     }
+  },
+  created: function () {
+    console.log('created of home.vue')
+    this.$data.ifLogin = firebase.auth().currentUser
+    console.log('created of home.vue::: firebase.auth().currentUser', firebase.auth().currentUser)
+    console.log('msg: ', this.$data.msg)
+  },
+  updated: function () {
+    console.log('updated of home.vue')
+    this.$data.ifLogin = firebase.auth().currentUser
   },
   components: {
     Home2Vue,
-    Login,
-    ImageUpload
+    // Login,
+    ImageUpload,
+    LoginButton,
+    LogoutButton
   },
   methods: {
     logout () {
@@ -38,6 +53,15 @@ export default {
     },
     id () {
       console.log('id : ' + this.$route.params.userid)
+    },
+    refresh: function () {
+      console.log('refresh start')
+      const curUser = firebase.auth().currentUser
+
+      firebase.auth().signOut().then(() => {
+        console.log(curUser)
+        this.ifLogin = null
+      })
     }
   }
 }
