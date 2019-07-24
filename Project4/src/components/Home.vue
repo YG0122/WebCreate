@@ -1,11 +1,6 @@
 <template>
   <div>
-    <home2-vue></home2-vue>
-    <image-upload></image-upload>
-    <div class="home">
-      <button @click='id'>idid
-      </button>
-    </div>
+    <button @click='goToPosts'>goToPosts</button>
   </div>
 </template>
 
@@ -14,6 +9,7 @@ import firebase from 'firebase'
 import Home2Vue from './Home2.vue'
 import Login from './Login'
 import ImageUpload from './ImageUpload.vue'
+import AddPost from './AddPost'
 
 // import db from '../main'
 export default {
@@ -28,7 +24,8 @@ export default {
   components: {
     Home2Vue,
     Login,
-    ImageUpload
+    ImageUpload,
+    AddPost
   },
   methods: {
     logout () {
@@ -38,6 +35,9 @@ export default {
     },
     id () {
       console.log('id : ' + this.$route.params.userid)
+    },
+    goToPosts () {
+      this.$router.replace('./' + this.$route.params.userid + '/viewpost')
     }
   }
 }

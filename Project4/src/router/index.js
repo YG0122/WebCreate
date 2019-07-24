@@ -6,6 +6,9 @@ import Hello from '@/components/Hello'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import Home from '@/components/Home'
+import AddPost from '@/components/AddPost'
+import ViewPost from '@/components/ViewPost'
+import ViewPostSpecific from '@/components/ViewPostSpecific'
 
 Vue.use(Router)
 
@@ -19,6 +22,26 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/:userid/addpost',
+      name: 'AddPost',
+      component: AddPost
+    },
+    {
+      path: '/:userid/viewpost',
+      name: 'ViewPost',
+      component: ViewPost
+    },
+    {
+      path: '/:userid/viewpost/:postid',
+      name: 'ViewPostSpecific',
+      component: ViewPostSpecific
+    },
+    {
+      path: '/:userid/viewpost/:postid',
+      name: 'ViewPostSpecific',
+      component: ViewPostSpecific
     },
     {
       path: '/:userid/login',
@@ -68,10 +91,6 @@ router.beforeEach((to, from, next) => {
   if (requiresAuth && !currentUser) {
     console.log('going uid + login')
     next('login')
-  } else if (!requiresAuth && currentUser) {
-    console.log('going uid')
-    // next(currentUser.email.substring(0, 28))
-    next('hello')
   } else {
     console.log('going next')
     next()

@@ -1,6 +1,5 @@
 <template>
    <div>
-      <!-- <img id="preview" src="previewImage" class="uploading-image" /> -->
       <img id="preview" src="" width="700" alt="로컬에 있는 이미지가 보여지는 영역">
       <a id="download" download="thumbnail.jpg" target="_blank">
         <img id="thumbnail" src="" width="100" alt="썸네일영역 (클릭하면 다운로드 가능)">
@@ -21,7 +20,6 @@ export default {
     uploadImage (e) {
       const image = e.target.files[0]
       const reader = new FileReader()
-      // const url = reader.readAsDataURL(image)
       reader.readAsDataURL(image)
 
       reader.onload = e => {
