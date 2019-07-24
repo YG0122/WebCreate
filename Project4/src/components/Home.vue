@@ -7,25 +7,37 @@
 <script>
 import firebase from 'firebase'
 import Home2Vue from './Home2.vue'
-import Login from './Login'
 import ImageUpload from './ImageUpload.vue'
 import AddPost from './AddPost'
+import LoginButton from './LoginButton'
+import LogoutButton from './LogoutButton'
+import Login from './Login'
 
-// import db from '../main'
 export default {
   name: 'home',
   data () {
     return {
       msg: 'Welcome to Your Vue.js PWA',
       age: null,
-      color: null
+      color: null,
+      ifLogin: null
     }
+  },
+  created: function () {
+    console.log('created of home.vue')
+    this.$data.ifLogin = firebase.auth().currentUser
+  },
+  updated: function () {
+    console.log('updated of home.vue')
+    this.$data.ifLogin = firebase.auth().currentUser
   },
   components: {
     Home2Vue,
     Login,
     ImageUpload,
-    AddPost
+    AddPost,
+    LoginButton,
+    LogoutButton
   },
   methods: {
     logout () {

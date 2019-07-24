@@ -10,7 +10,7 @@
 <script>
 
 import { VueEditor } from 'vue2-editor'
-import db from '../main'
+import { db } from '../main'
 import firebase from 'firebase'
 
 export default {
@@ -27,9 +27,6 @@ export default {
   methods: {
     confirm () {
       const currentUser = firebase.auth().currentUser
-      console.log('content:', this.$data.content)
-      console.log('title:', this.$data.title)
-      console.log('writer:', currentUser)
 
       const date = new Date()
       var formatDate =
@@ -40,10 +37,7 @@ export default {
         String(date.getMinutes()).padStart(2, '0') + ':' +
         String(date.getSeconds()).padStart(2, '0')
 
-      console.log('time', date.getTime())
       const path = this.$router.currentRoute.fullPath
-      // db.collection('Posts').doc(this.$data.title + '__' + currentUser.email)
-      //   .set({Title: this.$data.title, Content: this.$data.content, Writer: currentUser.email, Date: date, ParentUid: path.substr(1, path.length - 9)})
 
       db.collection('Posts').add({Title: this.$data.title, Content: this.$data.content, Writer: currentUser.email, Date: date, FormatDate: formatDate, ParentUid: path.substr(1, path.length - 9)})
       console.log('this router: ', this.$router.currentRoute.fullPath.substr(1, this.$router.currentRoute.fullPath.length - 9))

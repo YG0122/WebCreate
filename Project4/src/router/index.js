@@ -47,6 +47,12 @@ const router = new Router({
       path: '/:userid/login',
       name: 'Login',
       component: Login,
+      beforeEnter: (to, from, next) => {
+        const currentUser = firebase.auth().currentUser
+        console.log('path: ' + this.path)
+        if (currentUser) next('hello')
+        next()
+      },
       meta: {
         requiresAuth: false
       }
@@ -55,6 +61,11 @@ const router = new Router({
       path: '/:userid/sign-up',
       name: 'SignUp',
       component: SignUp,
+      beforeEnter: (to, from, next) => {
+        const currentUser = firebase.auth().currentUser
+        if (currentUser) next('hello')
+        next()
+      },
       meta: {
         requiresAuth: false
       }
@@ -73,10 +84,7 @@ const router = new Router({
     {
       path: '/:userid',
       name: 'Userid',
-      component: Home,
-      meta: {
-        requiresAuth: true
-      }
+      component: Home
     }
   ]
 })
@@ -84,10 +92,14 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   const currentUser = firebase.auth().currentUser
   console.log('current user :', currentUser)
+
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   console.log('requiresAuth :', requiresAuth)
 
   if (currentUser) console.log('parent uid :', currentUser.email.substring(0, 28))
+
+  console.log('beforeEach this.$router:', this.$router)
+
   if (requiresAuth && !currentUser) {
     console.log('going uid + login')
     next('login')

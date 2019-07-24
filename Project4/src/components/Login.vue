@@ -4,18 +4,14 @@
       <input type="text" v-model="email" placeholder="Email"><br>
       <input type="password" v-model="password" placeholder="Password"><br>
       <button @click="login">Login</button>
-      <p>
-        or Sign In with Google <br>
-        <button @click="socialLogin" class="social-button">
-          <img alt="Google Logo" src="../assets/google-logo.png">
-        </button>
-      </p>
       <p>Don't you have an account? You can create one <button @click="signUp">Sign Up</button></p>
   </div> 
 </template>
 
 <script>
 import firebase from 'firebase'
+import { db } from '../main'
+
 export default {
   name: 'login',
   data () {
@@ -25,7 +21,7 @@ export default {
     }
   },
   methods: {
-    login () {
+    async login () {
       const uid = this.$route.params.userid
       if (uid === '1') {
         console.log('Login.vue/login()')
@@ -44,15 +40,40 @@ export default {
         )
       } else {
         console.log('Login.vue/login()//uid : ', uid)
-        firebase.auth().signInWithEmailAndPassword(uid + '_' + this.email, this.password).then(
-          (user) => {
-            console.log('before replacing to userid')
-            this.$router.replace('../' + uid)
-          },
-          (err) => {
-            alert('Oops. ' + err.message)
-          }
-        )
+        const thisEmail = this.email
+        const thisPw = this.password
+        var i = 0
+        var thisUid = ''
+        await db.collection('emailUidPair').where('email', '==', this.email)
+          .get()
+          .then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+              console.log(doc.id, ' => ', doc.data())
+              if (i === 0) {
+                thisUid = doc.data().uid
+                i++
+              }
+            })
+          })
+
+        if (thisUid === uid) {
+          firebase.auth().signInWithEmailAndPassword(thisEmail, thisPw).then(
+            (user) => {
+              this.$router.replace('../' + uid)
+            },
+            (err) => {
+              alert('Oops. ' + err.message)
+            })
+        } else {
+          firebase.auth().signInWithEmailAndPassword(uid + '_' + thisEmail, thisPw).then(
+            (user) => {
+              this.$router.replace('../' + uid)
+            },
+            (err) => {
+              alert('Oops. ' + err.message)
+            }
+          )
+        }
       }
     },
     socialLogin () {
@@ -90,8 +111,6 @@ export default {
     padding: 15px;
   }
   button {
-    margin-top: 20px;
-    width: 5%;
     padding: 10px 20px;
     background: #BED38E;
     color: #59754D;

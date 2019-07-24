@@ -18,7 +18,9 @@ let config = {
   appId: '1:973205446638:web:9ac91ea6db8aca53'
 }
 firebase.initializeApp(config)
-export default firebase.firestore()
+console.log('just initialized')
+export const db = firebase.firestore()
+
 firebase.auth().onAuthStateChanged(function (user) {
   if (!app) {
     app = new Vue({

@@ -1,7 +1,7 @@
 <template>
   <div class="viewPost">
     <button @click="createPost">createPost</button>
-    <button @click="backToHome">backToHome</button>
+    <button @click="backHome">backHome</button>
     <table width="100%" className="table table-striped community-table">
       <thead>
           <tr>
@@ -28,7 +28,7 @@
 
 <script>
 
-import db from '../main'
+import { db } from '../main'
 import ViewPostSpecific from './ViewPostSpecific'
 
 export default {
@@ -68,7 +68,7 @@ export default {
     createPost () {
       this.$router.replace('./addpost')
     },
-    backToHome () {
+    backHome () {
       this.$router.replace('.')
     }
   }

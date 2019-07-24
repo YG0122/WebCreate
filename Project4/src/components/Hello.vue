@@ -7,6 +7,7 @@
 
 <script>
 import firebase from 'firebase'
+import { db } from '../main'
 
 export default {
   name: 'hello',
@@ -27,15 +28,17 @@ export default {
       let self = this
       var user1 = firebase.auth().currentUser
       var uid
-      firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-          uid = user1.uid
-          console.log('uid: ' + uid)
-          self.$router.replace(uid)
-        } else {
-          // No user is signed in.
-        }
-      })
+      // firebase.auth().onAuthStateChanged(function (user) {
+      console.log('onauthChange in webpage()')
+      // if (user) {
+      db.collection('emailUidPair').add({ email: user1.email, uid: user1.uid })
+      uid = user1.uid
+      console.log('uid: ' + uid)
+      self.$router.replace(uid)
+      // } else {
+      // No user is signed in.
+      // }
+      // })
     }
   }
 }

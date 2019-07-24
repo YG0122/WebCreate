@@ -5,11 +5,9 @@
 </template>
 
 <script>
-import firebase from 'firebase'
-import Login from './Login'
-// import db from '../main'
+
 export default {
-  name: 'hello',
+  name: 'loginButton',
   data () {
     return {
       msg: 'Welcome to Your Vue.js PWA',
@@ -19,7 +17,9 @@ export default {
   },
   methods: {
     login_click () {
-      this.$router.replace('login')
+      const uid = this.$route.params.userid
+      console.log('uid: ', uid)
+      this.$router.replace('/' + uid + '/login')
     }
   }
 }
@@ -47,8 +47,8 @@ a {
 
 button {
   padding: 10px 20px;
-  background: #42b983;
-  color: white;
+  background: #BED38E;
+  color: #59754D;
   font-weight: bold;
   border: none;
   border-radius: 22px;

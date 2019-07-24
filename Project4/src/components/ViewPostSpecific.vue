@@ -9,7 +9,7 @@
 <script>
 
 import { VueEditor } from 'vue2-editor'
-import db from '../main'
+import { db } from '../main'
 
 export default {
   name: 'addPost',
@@ -28,18 +28,13 @@ export default {
     var title = ''
     var content = ''
 
-    console.log('path in specific, created:', path)
     await db.collection('Posts').doc(path).get()
       .then(function (doc) {
-        console.log('path inside doc, get     :', path)
-        console.log('doc.data() in created is :', doc.data().Title)
         title = doc.data().Title
         content = doc.data().Content
       })
     this.Title = title
     this.Content = content
-
-    console.log('this.title changed to:', this.title)
   },
   methods: {
     goBack () {
