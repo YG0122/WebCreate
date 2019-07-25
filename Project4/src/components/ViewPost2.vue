@@ -10,7 +10,10 @@
             <a href="../mainpage">This is Webcreator</a>
           </li>
           <li class='active'>
-            <a href="1/viewpost2">Post</a>
+            <a href="./viewpost2">Post</a>
+          </li>
+          <li>
+              <a href='./addpost'>AddPost</a>
           </li>
         </ul>
       </nav>
