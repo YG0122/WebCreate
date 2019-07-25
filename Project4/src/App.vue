@@ -1,16 +1,7 @@
 <template>
   <div id="app">
-    <!-- <header>
-      <span>WEBCREATOR</span>
-    </header> -->
     <main>
-      <!-- <img src="./assets/logo.png" alt="Vue.js PWA"
-      contain
-      height="200px"
-      width="200px"> -->
       <router-view>
-        <!-- <noscript><link rel='stylesheet'
-        href="./assets/css/noscript.css"/></noscript> -->
       </router-view>
     </main>
   </div>
@@ -50,14 +41,6 @@ main {
   text-align: center;
   margin-top: 0px;
 }
-
-/* header {
-  margin: 0;
-  height: 55px;
-  padding: 0 16px 0 24px;
-  background-color: #FDB2A8;
-  color: #ffffff;
-} */
 
 header span {
   display: block;

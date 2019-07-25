@@ -1,6 +1,16 @@
 <template>
   <div>
-    <button @click='goToPosts'>goToPosts</button>
+    <home2-vue></home2-vue>
+    <image-upload></image-upload>
+    
+    <div>
+      <button @click='goToPosts'>goToPosts</button>
+    </div>
+    <loginButton v-if="ifLogin === null"></loginButton>
+    <div v-else>
+      <logoutButton v-on:logout-status="refresh"></logoutButton>
+    </div>
+
   </div>
 </template>
 
@@ -50,6 +60,15 @@ export default {
     },
     goToPosts () {
       this.$router.replace('./' + this.$route.params.userid + '/viewpost')
+    },
+    refresh: function () {
+      console.log('refresh start')
+      const curUser = firebase.auth().currentUser
+
+      firebase.auth().signOut().then(() => {
+        console.log(curUser)
+        this.ifLogin = null
+      })
     }
   }
 }
