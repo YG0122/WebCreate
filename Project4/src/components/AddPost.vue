@@ -57,12 +57,6 @@ export default {
           })
         })
 
-      // if (this.$route.params.userid !== '1') {
-      //   email = currentUser.email.substr(29)
-      // } else {
-      //   email = currentUser.email
-      // }
-
       db.collection('Posts').add({Title: this.$data.title, Content: this.$data.content, Writer: email, Date: date, FormatDate: formatDate, ParentUid: path.substr(1, path.length - 9)})
       console.log('this router: ', this.$router.currentRoute.fullPath.substr(1, this.$router.currentRoute.fullPath.length - 9))
       this.$router.replace('./viewpost')

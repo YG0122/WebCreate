@@ -71,6 +71,7 @@ export default {
         .then(function (querySnapshot) {
           querySnapshot.forEach(doc => {
             if (i === 0) {
+              // if (doc.data().parentUid !== '1')
               uid = doc.data().uid
               i++
             }

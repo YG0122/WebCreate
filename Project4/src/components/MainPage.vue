@@ -4,7 +4,6 @@
       <div id='intro' class="hidden">
         <div class="right_above">
       <button @click="logout">Logout</button>
-      <!-- <button>WebPage</button> -->
     </div>
         <h1>
           WE ARE

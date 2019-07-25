@@ -2,15 +2,14 @@
   <div>
     <home2-vue></home2-vue>
     <image-upload></image-upload>
-    
     <div>
       <button @click='goToPosts'>goToPosts</button>
+      <button @click='toProfile(d)'>Profile</button>
     </div>
     <loginButton v-if="ifLogin === null"></loginButton>
     <div v-else>
       <logoutButton v-on:logout-status="refresh"></logoutButton>
     </div>
-
   </div>
 </template>
 
@@ -69,6 +68,9 @@ export default {
         console.log(curUser)
         this.ifLogin = null
       })
+    },
+    async toProfile () {
+      this.$router.replace('../' + this.$route.params.userid + '/profile')
     }
   }
 }
