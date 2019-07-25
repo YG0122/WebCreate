@@ -34,7 +34,10 @@ const router = new Router({
     {
       path: '/:userid/addpost',
       name: 'AddPost',
-      component: AddPost
+      component: AddPost,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/:userid/viewpost',

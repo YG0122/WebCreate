@@ -10,7 +10,7 @@
               <a href="../mainpage">This is Webcreator</a>
             </li>
             <li>
-              <a href="./viewpost2">Post</a>
+              <a href="../viewpost2">Post</a>
             </li>
             <li class='active'>
               <a href='./addpost'>AddPost</a>
@@ -93,7 +93,10 @@ export default {
       var email = currentUser.email
       var uid = currentUser.uid
       var i = 0
-      await db.collection('Users').where('uid', '==', uid).get()
+
+      console.log('about to find user')
+      console.log('uid: ', uid)
+      db.collection('Users').where('uid', '==', uid).get()
         .then(function (querySnapshot) {
           querySnapshot.forEach(function (doc) {
             if (i === 0) {
@@ -107,6 +110,9 @@ export default {
             }
           })
         })
+        .catch(function (err) {
+          console.log(err)
+        })
 
       db.collection('Posts').add({Title: this.$data.title, Content: this.$data.content, Writer: email, Date: date, FormatDate: formatDate, ParentUid: path.substr(1, path.length - 9)})
       console.log('this router: ', this.$router.currentRoute.fullPath.substr(1, this.$router.currentRoute.fullPath.length - 9))
@@ -114,6 +120,9 @@ export default {
     },
     goBack () {
       this.$router.replace('./viewpost2')
+    },
+    sleep (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
     }
   }
 }

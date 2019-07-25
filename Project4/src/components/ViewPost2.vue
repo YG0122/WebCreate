@@ -2,7 +2,7 @@
   <html>
     <div id="wrapper">
       <header id='header'>
-        <a href="./mainpage" class="logo">WEBCREATOR</a>
+        <a class="logo">WEBCREATOR</a>
       </header>
       <nav id='nav'>
         <ul class='links'>
@@ -26,7 +26,6 @@
             </h1>
           </header>
           <a class='createpost' @click="createPost">createPost</a>
-          <a class='backhome' @click="backHome">backHome</a>
           <br>
           <br>
           <br>
@@ -36,10 +35,10 @@
             <table>
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>TITLE</th>
-                  <th>WRITTEN BY</th>
-                  <th>CREATED AT</th>
+                  <th width="5%">#</th>
+                  <th width="50%">TITLE</th>
+                  <th width="23%">WRITTEN BY</th>
+                  <th width="22%">CREATED AT</th>
                 </tr>
               </thead>
               <tbody>
@@ -154,7 +153,7 @@ export default {
       this.$router.replace('./addpost')
     },
     backHome () {
-      this.$router.replace('.')
+      this.$router.replace('./viewpost2')
     }
   }
 }

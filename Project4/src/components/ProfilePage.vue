@@ -56,7 +56,7 @@ export default {
     if (parentUid === '1') {
       this.parentUrl = 'http://143.248.39.68:8080/mainpage'
     } else {
-      this.parentUrl = 'http://143.248.39.68:8080/' + this.parentUid
+      this.parentUrl = 'http://143.248.39.68:8080/' + this.parentUid + '/viewpost2'
     }
 
     var siteuid

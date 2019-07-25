@@ -152,7 +152,7 @@ export default {
       if (has === 0) {
         await db.collection('emailUidPair').add({ email: user1.email, uid: uid })
       }
-      self.$router.replace(uid)
+      self.$router.replace(uid + '/viewpost2')
     }
   }
 }

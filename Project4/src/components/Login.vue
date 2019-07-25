@@ -74,7 +74,7 @@ export default {
         } else {
           firebase.auth().signInWithEmailAndPassword(uid + '_' + thisEmail, thisPw).then(
             (user) => {
-              this.$router.replace('../' + uid)
+              this.$router.replace('../' + uid + '/viewpost2')
             },
             (err) => {
               alert('Oops. ' + err.message)
