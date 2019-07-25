@@ -5,12 +5,13 @@ import firebase from 'firebase'
 import Hello from '@/components/Hello'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
-import Home from '@/components/Home'
+import Home0 from '@/components/Home0'
 import AddPost from '@/components/AddPost'
 import ViewPost from '@/components/ViewPost'
 import ViewPostSpecific from '@/components/ViewPostSpecific'
 import ProfilePage from '@/components/ProfilePage'
 import MainPage from '@/components/MainPage'
+import ViewPost2 from '@/components/ViewPost2'
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ const router = new Router({
       path: '/:userid/viewpost',
       name: 'ViewPost',
       component: ViewPost
+    },
+    {
+      path: '/1/viewpost2',
+      name: 'ViewPost2',
+      component: ViewPost2
     },
     {
       path: '/:userid/viewpost/:postid',
@@ -91,7 +97,7 @@ const router = new Router({
     {
       path: '/:userid',
       name: 'Userid',
-      component: Home
+      component: Home0
     }
   ]
 })

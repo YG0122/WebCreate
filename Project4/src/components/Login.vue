@@ -10,7 +10,8 @@
       <p>Don't you have an account? You can create one.
         <br><br>
         <button class ='button small' @click="signUp">Sign Up</button>
-      </p>
+      </p><br><br><br>
+    <button class = 'button small' @click="mainPage">Home</button>
   </div> 
 </template>
 
@@ -101,6 +102,14 @@ export default {
         this.$router.replace('../' + uid + '/sign-up')
         console.log('signUp this.$router after uid:', this.$router)
       }
+    },
+    mainPage () {
+      const uid = this.$route.params.userid
+      if (uid === '1') {
+        this.$router.replace('../mainpage')
+      } else {
+        //
+      }
     }
   }
 }
@@ -119,7 +128,7 @@ export default {
     background-size: 100% auto;
     background-repeat: no-repeat;
     margin: 0 30% 0 30%;
-    padding: 5rem 0 10rem 0;
+    padding: 5rem 0 2rem 0;
     border: 2px solid #e8e9eb;
     box-shadow: #e8e9eb;
     border-radius: 1em;

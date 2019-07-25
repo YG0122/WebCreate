@@ -8,7 +8,8 @@
     <p>Go back to 
       <br><br>
       <button class ='button small' @click="login">Login</button>
-    </p>
+    </p><br><br><br>
+  <button class = 'button small' @click="mainPage">Home</button>
   </div>
 </template>
 
@@ -55,6 +56,14 @@ export default {
     },
     login () {
       this.$router.replace('./login')
+    },
+    mainPage () {
+      const uid = this.$route.params.userid
+      if (uid === '1') {
+        this.$router.replace('../mainpage')
+      } else {
+        //
+      }
     }
   }
 }
@@ -68,7 +77,7 @@ export default {
     background-size: 100% auto;
     background-repeat: no-repeat;
     margin: 0 30% 0 30%;
-    padding: 5rem 0 10rem 0;
+    padding: 5rem 0 2rem 0;
     border: 2px solid #e8e9eb;
     box-shadow: #e8e9eb;
     border-radius: 1em;
