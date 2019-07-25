@@ -6,6 +6,10 @@ import Hello from '@/components/Hello'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import Home from '@/components/Home'
+import AddPost from '@/components/AddPost'
+import ViewPost from '@/components/ViewPost'
+import ViewPostSpecific from '@/components/ViewPostSpecific'
+import ProfilePage from '@/components/ProfilePage'
 import MainPage from '@/components/MainPage'
 
 Vue.use(Router)
@@ -25,6 +29,26 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/:userid/addpost',
+      name: 'AddPost',
+      component: AddPost
+    },
+    {
+      path: '/:userid/viewpost',
+      name: 'ViewPost',
+      component: ViewPost
+    },
+    {
+      path: '/:userid/viewpost/:postid',
+      name: 'ViewPostSpecific',
+      component: ViewPostSpecific
+    },
+    {
+      path: '/:userid/profile',
+      name: 'ProfilePage',
+      component: ProfilePage
     },
     {
       path: '/:userid/login',
@@ -90,9 +114,6 @@ router.beforeEach((to, from, next) => {
     console.log('going next')
     next()
   }
-})/* else if (!requiresAuth && currentUser) {
-    console.log('going uid')
-    next('hello')
-  } */
+})
 
 export default router

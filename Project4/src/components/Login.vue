@@ -4,12 +4,6 @@
       <input type="text" v-model="email" placeholder="Email"><br>
       <input type="password" v-model="password" placeholder="Password"><br>
       <button @click="login">Login</button>
-      <!-- <p>
-        or Sign In with Google <br>
-        <button @click="socialLogin" class="social-button">
-          <img alt="Google Logo" src="../assets/google-logo.png">
-        </button>
-      </p> -->
       <p>Don't you have an account? You can create one <button @click="signUp">Sign Up</button></p>
   </div> 
 </template>
@@ -65,21 +59,17 @@ export default {
         if (thisUid === uid) {
           firebase.auth().signInWithEmailAndPassword(thisEmail, thisPw).then(
             (user) => {
-              console.log('before replacing to userid')
               this.$router.replace('../' + uid)
             },
             (err) => {
-              console.log('thisuid === uid, err')
               alert('Oops. ' + err.message)
             })
         } else {
           firebase.auth().signInWithEmailAndPassword(uid + '_' + thisEmail, thisPw).then(
             (user) => {
-              console.log('before replacing to userid')
               this.$router.replace('../' + uid)
             },
             (err) => {
-              console.log('thisuid != uid, err')
               alert('Oops. ' + err.message)
             }
           )

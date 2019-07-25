@@ -14,6 +14,7 @@
 
 <script>
 import firebase from 'firebase'
+import { db } from '../main'
 
 export default {
   name: 'signUp',
@@ -26,10 +27,13 @@ export default {
   methods: {
     SignUp () {
       const uid = this.$route.params.userid
+      const email = this.email
+      const password = this.password
       if (uid === '1') {
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+        firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(
             (user) => {
+              db.collection('Users').add({ email: email, uid: firebase.auth().currentUser.uid, parentUid: '1' })
               this.$router.replace('../hello')
             },
             (err) => {
@@ -37,9 +41,10 @@ export default {
             }
           )
       } else {
-        firebase.auth().createUserWithEmailAndPassword(uid + '_' + this.email, this.password)
+        firebase.auth().createUserWithEmailAndPassword(uid + '_' + email, password)
           .then(
             (user) => {
+              db.collection('Users').add({ email: email, uid: firebase.auth().currentUser.uid, parentUid: uid })
               this.$router.replace('../' + uid)
             },
             (err) => {

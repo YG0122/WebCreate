@@ -5,9 +5,7 @@
 </template>
 
 <script>
-// import firebase from 'firebase'
-// import Login from './Login'
-// import db from '../main'
+
 export default {
   name: 'loginButton',
   data () {

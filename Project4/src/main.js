@@ -9,13 +9,13 @@ Vue.config.productionTip = false
 
 let app
 let config = {
-  apiKey: 'AIzaSyDizXaLOcvPkC6HcuM7q3wa48PsE1fZpnk',
-  authDomain: 'project4-8e88f.firebaseapp.com',
-  databaseURL: 'https://project4-8e88f.firebaseio.com',
-  projectId: 'project4-8e88f',
-  storageBucket: 'project4-8e88f.appspot.com',
-  messagingSenderId: '399276307732',
-  appId: '1:399276307732:web:36d2104f7de320cb'
+  apiKey: 'AIzaSyBZAgeYo7Zz7Fmf4ahAsMawAnS6VqKFmro',
+  authDomain: 'fir-tutorial-2e5d7.firebaseapp.com',
+  databaseURL: 'https://fir-tutorial-2e5d7.firebaseio.com',
+  projectId: 'fir-tutorial-2e5d7',
+  storageBucket: 'fir-tutorial-2e5d7.appspot.com',
+  messagingSenderId: '973205446638',
+  appId: '1:973205446638:web:9ac91ea6db8aca53'
 }
 firebase.initializeApp(config)
 console.log('just initialized')

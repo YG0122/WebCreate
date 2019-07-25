@@ -9,7 +9,7 @@
 
 <script>
 import firebase from 'firebase'
-// import db from '../main'
+
 export default {
   name: 'home2',
   data () {

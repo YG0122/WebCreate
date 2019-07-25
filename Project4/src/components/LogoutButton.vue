@@ -5,15 +5,9 @@
 </template>
 
 <script>
-// import * as firebase from 'firebase/app'
 import firebase from 'firebase'
-// import 'firebase/auth'
 import vm from './Home'
-// import Home from '@/components/Home'
 
-// import firebase from 'firebase'
-// import Login from './Login'
-// import db from '../main'
 export default {
   name: 'logoutButton',
   data () {

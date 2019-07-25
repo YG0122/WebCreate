@@ -1,13 +1,6 @@
 <template>
   <div>
-    <home2-vue></home2-vue>
-    <image-upload></image-upload>
-    <loginButton v-if="ifLogin === null"></loginButton>
-    
-    <div v-else>
-      <logoutButton v-on:logout-status="refresh"></logoutButton>
-    </div>
-
+    <button @click='goToPosts'>goToPosts</button>
   </div>
 </template>
 
@@ -15,8 +8,10 @@
 import firebase from 'firebase'
 import Home2Vue from './Home2.vue'
 import ImageUpload from './ImageUpload.vue'
+import AddPost from './AddPost'
 import LoginButton from './LoginButton'
 import LogoutButton from './LogoutButton'
+import Login from './Login'
 
 export default {
   name: 'home',
@@ -31,8 +26,6 @@ export default {
   created: function () {
     console.log('created of home.vue')
     this.$data.ifLogin = firebase.auth().currentUser
-    console.log('created of home.vue::: firebase.auth().currentUser', firebase.auth().currentUser)
-    console.log('msg: ', this.$data.msg)
   },
   updated: function () {
     console.log('updated of home.vue')
@@ -40,8 +33,9 @@ export default {
   },
   components: {
     Home2Vue,
-    // Login,
+    Login,
     ImageUpload,
+    AddPost,
     LoginButton,
     LogoutButton
   },
@@ -54,14 +48,8 @@ export default {
     id () {
       console.log('id : ' + this.$route.params.userid)
     },
-    refresh: function () {
-      console.log('refresh start')
-      const curUser = firebase.auth().currentUser
-
-      firebase.auth().signOut().then(() => {
-        console.log(curUser)
-        this.ifLogin = null
-      })
+    goToPosts () {
+      this.$router.replace('./' + this.$route.params.userid + '/viewpost')
     }
   }
 }
