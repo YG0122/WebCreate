@@ -32,7 +32,7 @@ export default {
       if (uid === '1') {
         console.log('Login.vue/login()')
         console.log('current this.$router before :', this.$router)
-        firebase.auth().signInWithEmailAndPqassword(this.email, this.password).then(
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
           (user) => {
             console.log('login, 1, then')
             console.log('current this.$router :', this.$router)

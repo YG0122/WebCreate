@@ -6,12 +6,18 @@ import Hello from '@/components/Hello'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import Home from '@/components/Home'
+import MainPage from '@/components/MainPage'
 
 Vue.use(Router)
 
 const router = new Router({
   mode: 'history',
   routes: [
+    {
+      path: '/mainpage',
+      name: 'MainPage',
+      component: MainPage
+    },
     {
       path: '/hello',
       name: 'Hello',
