@@ -1,5 +1,20 @@
 <template>
   <html>
+    <div id="wrapper" class="fade-in">
+      <div id='intro' class="hidden">
+	<div class="right_above">
+        <div class='mypage'>
+          <button v-if="ifLogin !== null" @click = 'toProfile'>Mypage</button>
+    	</div>
+        <div class='loginout'>
+        	<loginButton v-if="ifLogin === null"></loginButton>
+            <logoutButton v-else v-on:logout-status="refresh"></logoutButton>
+        </div>
+      <!-- <button>WebPage</button> -->
+    </div>
+      </div>
+	</div>
+
     <div id="wrapper">
       <header id='header'>
         <a class="logo">WEBCREATOR</a>
@@ -97,20 +112,31 @@
 
 <script>
 
+import firebase from 'firebase'
 import { db } from '../main'
 import ViewPostSpecific from './ViewPostSpecific'
+import LoginButton from './LoginButton'
+import LogoutButton from './LogoutButton'
+import Login from './Login'
+import AddPost from './AddPost'
 
 export default {
   name: 'addPost',
   data () {
     return {
-      posts: []
+      posts: [],
+      ifLogin: null
     }
   },
   components: {
-    ViewPostSpecific
+    ViewPostSpecific,
+    Login,
+    AddPost,
+    LoginButton,
+    LogoutButton
   },
   created: async function () {
+    this.$data.ifLogin = firebase.auth().currentUser
     const path = this.$router.currentRoute.fullPath
     var postList = []
     console.log(path.substr(1, path.length - 11))
@@ -126,6 +152,10 @@ export default {
     })
     this.posts = postList
     console.log('posts: ', this.posts)
+  },
+  updated: function () {
+    console.log('updated of home.vue')
+    this.$data.ifLogin = firebase.auth().currentUser
   },
   methods: {
     async toPost (id) {
@@ -154,6 +184,15 @@ export default {
     },
     backHome () {
       this.$router.replace('./viewpost2')
+    },
+    refresh: function () {
+      console.log('refresh start')
+      const curUser = firebase.auth().currentUser
+
+      firebase.auth().signOut().then(() => {
+        console.log(curUser)
+        this.ifLogin = null
+      })
     }
   }
 }
@@ -167,6 +206,18 @@ html {
   /* background-position: center; */
   background-repeat: no-repeat;
   /* background-attachment: fixed; */
+}
+
+.loginout {
+  position:absolute;
+  right: 0.5em;
+  top: 0.2em;
+}
+
+.mypage {
+  position: absolute;
+  right: 6.5em;
+  top: 0.2em;
 }
 
 .createpost {
@@ -2800,7 +2851,7 @@ p {
 
 	#intro {
 		color: #ffffff;
-		padding: 8rem 4rem 6rem 4rem ;
+		padding: 8rem 4rem 0rem 4rem ;
 		-moz-align-items: center;
 		-webkit-align-items: center;
 		-ms-align-items: center;
@@ -2825,7 +2876,7 @@ p {
 		cursor: default;
 		text-align: center;
 		z-index: 1;
-		min-height: 100vh;
+		/* min-height: 100vh; */
 	}
 
 		#intro input, #intro select, #intro textarea {
