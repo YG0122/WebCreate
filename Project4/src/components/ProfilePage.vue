@@ -11,7 +11,7 @@
         </p>
 
         <p>Created page:
-          <a :href="this.url">{{this.url}}</a>
+          <a :href=this.siteurl>{{this.url}}</a>
         </p>
         
       </div>
@@ -29,7 +29,8 @@ export default {
       email: '',
       parentUid: '',
       url: '',
-      parentUrl: ''
+      parentUrl: '',
+      siteurl: ''
     }
   },
   components: {
@@ -78,6 +79,7 @@ export default {
       })
     if (has === 1) {
       this.url = 'http://143.248.39.68:8080/' + siteuid
+      this.siteurl = this.url + '/viewpost2'
     }
   },
   methods: {
