@@ -9,6 +9,7 @@ import Home from '@/components/Home'
 import AddPost from '@/components/AddPost'
 import ViewPost from '@/components/ViewPost'
 import ViewPostSpecific from '@/components/ViewPostSpecific'
+import ProfilePage from '@/components/ProfilePage'
 
 Vue.use(Router)
 
@@ -39,9 +40,9 @@ const router = new Router({
       component: ViewPostSpecific
     },
     {
-      path: '/:userid/viewpost/:postid',
-      name: 'ViewPostSpecific',
-      component: ViewPostSpecific
+      path: '/:userid/profile',
+      name: 'ProfilePage',
+      component: ProfilePage
     },
     {
       path: '/:userid/login',

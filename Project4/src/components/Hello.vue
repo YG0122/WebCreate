@@ -24,21 +24,23 @@ export default {
         this.$router.replace('1/login')
       })
     },
-    webpage () {
+    async webpage () {
       let self = this
       var user1 = firebase.auth().currentUser
-      var uid
-      // firebase.auth().onAuthStateChanged(function (user) {
-      console.log('onauthChange in webpage()')
-      // if (user) {
-      db.collection('emailUidPair').add({ email: user1.email, uid: user1.uid })
-      uid = user1.uid
-      console.log('uid: ' + uid)
+      const uid = user1.uid
+      var has = 0
+
+      await db.collection('emailUidPair').where('email', '==', user1.email)
+        .get()
+        .then(function (querySnapshot) {
+          if (!querySnapshot.empty) {
+            has = 1
+          }
+        })
+      if (has === 0) {
+        await db.collection('emailUidPair').add({ email: user1.email, uid: uid })
+      }
       self.$router.replace(uid)
-      // } else {
-      // No user is signed in.
-      // }
-      // })
     }
   }
 }

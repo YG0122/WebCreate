@@ -17,7 +17,9 @@
           <td>
             <a @click="toPost(row.id)">{{row.data().Title}}</a>
           </td>
-          <td>{{row.data().Writer}}</td>
+          <td>
+            <a @click="toProfile(row.data().Writer)">{{row.data().Writer}}</a>
+          </td>
           <td>{{row.data().FormatDate}}</td>
         </tr>
       </tbody>
@@ -61,6 +63,20 @@ export default {
   methods: {
     async toPost (id) {
       this.$router.replace('./viewpost/' + id)
+    },
+    async toProfile (email) {
+      var uid
+      var i = 0
+      await db.collection('Users').where('email', '==', email).get()
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(doc => {
+            if (i === 0) {
+              uid = doc.data().uid
+              i++
+            }
+          })
+        })
+      this.$router.replace('../' + uid + '/profile')
     },
     sleep (ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
