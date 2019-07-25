@@ -164,9 +164,13 @@ export default {
     async toProfile (email) {
       var uid
       var i = 0
+      console.log('before where')
+      console.log('cur: ', firebase.auth().currentUser)
       await db.collection('Users').where('email', '==', email).get()
         .then(function (querySnapshot) {
+          console.log('before forEach')
           querySnapshot.forEach(doc => {
+            console.log('doc:', doc)
             if (i === 0) {
               // if (doc.data().parentUid !== '1')
               uid = doc.data().uid
@@ -174,6 +178,7 @@ export default {
             }
           })
         })
+        .catch()
       this.$router.replace('../' + uid + '/profile')
     },
     sleep (ms) {
