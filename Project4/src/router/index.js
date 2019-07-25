@@ -10,12 +10,18 @@ import AddPost from '@/components/AddPost'
 import ViewPost from '@/components/ViewPost'
 import ViewPostSpecific from '@/components/ViewPostSpecific'
 import ProfilePage from '@/components/ProfilePage'
+import MainPage from '@/components/MainPage'
 
 Vue.use(Router)
 
 const router = new Router({
   mode: 'history',
   routes: [
+    {
+      path: '/mainpage',
+      name: 'MainPage',
+      component: MainPage
+    },
     {
       path: '/hello',
       name: 'Hello',

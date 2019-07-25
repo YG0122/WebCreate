@@ -1,11 +1,17 @@
 <template>
   <div id="app">
-    <header>
-      <span>Vue.js PWA</span>
-    </header>
+    <!-- <header>
+      <span>WEBCREATOR</span>
+    </header> -->
     <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
-      <router-view></router-view>
+      <!-- <img src="./assets/logo.png" alt="Vue.js PWA"
+      contain
+      height="200px"
+      width="200px"> -->
+      <router-view>
+        <!-- <noscript><link rel='stylesheet'
+        href="./assets/css/noscript.css"/></noscript> -->
+      </router-view>
     </main>
   </div>
 </template>
@@ -17,12 +23,24 @@ export default {
 </script>
 
 <style>
+@import url(./assets/css/fontawesome-all.min.css);
+@import url("https://fonts.googleapis.com/css?family=Merriweather:300,700,300italic,700italic|Source+Sans+Pro:900");
+
+div, p, header {
+  margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
 body {
   margin: 0;
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #141324;
@@ -30,16 +48,16 @@ body {
 
 main {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 0px;
 }
 
-header {
+/* header {
   margin: 0;
-  height: 56px;
+  height: 55px;
   padding: 0 16px 0 24px;
   background-color: #FDB2A8;
   color: #ffffff;
-}
+} */
 
 header span {
   display: block;
