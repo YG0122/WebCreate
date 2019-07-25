@@ -25,7 +25,7 @@ export default {
     vueEditor: VueEditor
   },
   methods: {
-    confirm () {
+    async confirm () {
       const currentUser = firebase.auth().currentUser
 
       const date = new Date()
@@ -39,7 +39,25 @@ export default {
 
       const path = this.$router.currentRoute.fullPath
 
-      db.collection('Posts').add({Title: this.$data.title, Content: this.$data.content, Writer: currentUser.email, Date: date, FormatDate: formatDate, ParentUid: path.substr(1, path.length - 9)})
+      var email = currentUser.email
+      var uid = currentUser.uid
+      var i = 0
+      await db.collection('Users').where('uid', '==', uid).get()
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+            if (i === 0) {
+              console.log('currentUser.email :', email)
+              console.log('doc.data().ParentUid', doc.data().parentUid)
+              if (doc.data().parentUid !== '1') {
+                console.log('slicing?')
+                email = email.substr(29)
+              }
+              i++
+            }
+          })
+        })
+
+      db.collection('Posts').add({Title: this.$data.title, Content: this.$data.content, Writer: email, Date: date, FormatDate: formatDate, ParentUid: path.substr(1, path.length - 9)})
       console.log('this router: ', this.$router.currentRoute.fullPath.substr(1, this.$router.currentRoute.fullPath.length - 9))
       this.$router.replace('./viewpost')
     },

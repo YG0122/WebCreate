@@ -3,9 +3,12 @@
     <div id="wrapper" class="fade-in">
       <div id='intro' class="hidden">
         <div class="right_above">
-          <loginButton v-if="ifLogin === null"></loginButton>
-          <div v-else>
-            <logoutButton v-on:logout-status="refresh"></logoutButton>
+          <div class='mypage'>
+            <button v-if="ifLogin !== null" @click = 'toProfile'>Mypage</button>
+          </div>
+          <div class='loginout'>
+            <loginButton v-if="ifLogin === null"></loginButton>
+            <logoutButton v-else v-on:logout-status="refresh"></logoutButton>
           </div>
       <!-- <button>WebPage</button> -->
         </div>
@@ -89,6 +92,9 @@ export default {
         this.ifLogin = null
       })
     },
+    toProfile () {
+      this.$router.replace('./' + firebase.auth().currentUser.uid + '/profile')
+    },
     webpage () {
       let self = this
       var user1 = firebase.auth().currentUser
@@ -136,9 +142,15 @@ html {
   /* background-attachment: fixed; */
 }
 
-div.right_above {
+.loginout {
   position:absolute;
   right: 0.5em;
+  top: 0.2em;
+}
+
+.mypage {
+  position: absolute;
+  right: 6.5em;
   top: 0.2em;
 }
 

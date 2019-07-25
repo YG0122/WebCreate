@@ -2,6 +2,7 @@
   <div class="profilePage">
     <p>{{this.email}}</p>
     <p>{{this.parentUid}}</p>
+    <a :href="this.url">{{this.url}}</a>
   </div>
 </template>
 
@@ -14,7 +15,8 @@ export default {
   data () {
     return {
       email: '',
-      parentUid: ''
+      parentUid: '',
+      url: ''
     }
   },
   components: {
@@ -36,6 +38,27 @@ export default {
       })
     this.email = email
     this.parentUid = parentUid
+
+    var siteuid
+    i = 0
+    var has
+
+    await db.collection('emailUidPair').where('email', '==', this.email)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          if (i === 0) {
+            siteuid = uid
+            i++
+          }
+        })
+        if (!querySnapshot.empty) {
+          has = 1
+        }
+      })
+    if (has === 1) {
+      this.url = 'http://143.248.38.90:8080/' + siteuid
+    }
   },
   methods: {
   }
