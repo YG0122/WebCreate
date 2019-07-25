@@ -111,8 +111,8 @@ export default {
   created: async function () {
     const path = this.$router.currentRoute.fullPath
     var postList = []
-    console.log(path.substr(1, path.length - 10))
-    await db.collection('Posts').where('ParentUid', '==', path.substr(1, path.length - 10))
+    console.log(path.substr(1, path.length - 11))
+    await db.collection('Posts').where('ParentUid', '==', path.substr(1, path.length - 11))
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(doc => {

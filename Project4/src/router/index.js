@@ -42,7 +42,7 @@ const router = new Router({
       component: ViewPost
     },
     {
-      path: '/1/viewpost2',
+      path: '/:userid/viewpost2',
       name: 'ViewPost2',
       component: ViewPost2
     },
