@@ -32,10 +32,10 @@
             <table>
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>TITLE</th>
-                  <th>WRITTEN BY</th>
-                  <th>CREATED AT</th>
+                  <th width="5%">#</th>
+                  <th width="50%">TITLE</th>
+                  <th width="23%">WRITTEN BY</th>
+                  <th width="22%">CREATED AT</th>
                 </tr>
               </thead>
               <tbody>
