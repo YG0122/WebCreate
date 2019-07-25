@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     goBack () {
-      this.$router.replace('../viewpost')
+      this.$router.replace('../viewpost2')
     }
   }
 }

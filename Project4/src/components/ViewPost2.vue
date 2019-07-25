@@ -2,7 +2,7 @@
   <html>
     <div id="wrapper">
       <header id='header'>
-        <a href="./mainpage" class="logo">WEBCREATOR</a>
+        <a class="logo">WEBCREATOR</a>
       </header>
       <nav id='nav'>
         <ul class='links'>
@@ -10,7 +10,7 @@
             <a href="../mainpage">This is Webcreator</a>
           </li>
           <li class='active'>
-            <a href="1/viewpost2">Post</a>
+            <a href="./viewpost2">Post</a>
           </li>
         </ul>
       </nav>
@@ -23,7 +23,6 @@
             </h1>
           </header>
           <a class='createpost' @click="createPost">createPost</a>
-          <a class='backhome' @click="backHome">backHome</a>
           <br>
           <br>
           <br>
@@ -151,7 +150,7 @@ export default {
       this.$router.replace('./addpost')
     },
     backHome () {
-      this.$router.replace('.')
+      this.$router.replace('./viewpost2')
     }
   }
 }
