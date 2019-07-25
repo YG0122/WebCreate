@@ -17,14 +17,14 @@ export default {
 @import url(./assets/css/fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Merriweather:300,700,300italic,700italic|Source+Sans+Pro:900");
 
-div, p, header {
+/* div, p, header {
   margin: 0;
 	padding: 0;
 	border: 0;
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-}
+} */
 
 body {
   margin: 0;

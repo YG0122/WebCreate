@@ -3,9 +3,12 @@
     <div id="wrapper" class="fade-in">
       <div id='intro' class="hidden">
         <div class="right_above">
-      <button @click="logout">Logout</button>
+          <loginButton v-if="ifLogin === null"></loginButton>
+          <div v-else>
+            <logoutButton v-on:logout-status="refresh"></logoutButton>
+          </div>
       <!-- <button>WebPage</button> -->
-    </div>
+        </div>
         <h1>
           WE ARE
           <br>
@@ -46,20 +49,44 @@
 <script>
 import firebase from 'firebase'
 import { db } from '../main'
+import LoginButton from './LoginButton'
+import LogoutButton from './LogoutButton'
+import Login from './Login'
 
 export default {
-  name: 'hello',
+  name: 'mainpage',
   data () {
     return {
       msg: 'Welcome to Your Vue.js PWA',
       age: null,
-      color: null
+      color: null,
+      ifLogin: null
     }
+  },
+  created: function () {
+    this.$data.ifLogin = firebase.auth().currentUser
+  },
+  updated: function () {
+    this.$data.ifLogin = firebase.auth().currentUser
+  },
+  components: {
+    Login,
+    LoginButton,
+    LogoutButton
   },
   methods: {
     logout () {
       firebase.auth().signOut().then(() => {
         this.$router.replace('1/login')
+      })
+    },
+    refresh: function () {
+      console.log('refresh start')
+      const curUser = firebase.auth().currentUser
+
+      firebase.auth().signOut().then(() => {
+        console.log(curUser)
+        this.ifLogin = null
       })
     },
     webpage () {
