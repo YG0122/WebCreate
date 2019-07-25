@@ -1,11 +1,11 @@
 <template>
   <html>
     <div id="wrapper" class="fade-in">
-      <div id='intro' class="hidden">
-        <div class="right_above">
+      <div id='intro'>
+        <div class="right_above"> 
       <button @click="logout">Logout</button>
       <!-- <button>WebPage</button> -->
-    </div>
+      </div>
         <h1>
           WE ARE
           <br>
@@ -37,13 +37,22 @@
       </nav>
       <div id="main">
         <article class='post featured'>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
         </article>
       </div>
     </div>
   </html>
 </template>
 
-<script>
+<script src="../assets/js/jquery.min.js", >
 import firebase from 'firebase'
 import { db } from '../main'
 
@@ -154,7 +163,7 @@ p {
 	}
 
 	*, *:before, *:after {
-		box-sizing: inherit;
+    box-sizing: inherit;
 	}
 
 	body {
@@ -3456,9 +3465,9 @@ p {
 			text-align: center;
 		}
 
-		/* #intro + #header {
+		#intro + #header {
 			margin-top: -20rem;
-		} */
+		}
 
 			#intro + #header .logo {
 				-moz-transform: translateY(2rem);
@@ -3469,7 +3478,7 @@ p {
 				visibility: hidden;
 			}
 
-		/* #intro.hidden {
+		#intro.hidden {
 			pointer-events: none;
 			-moz-transform: translateY(2rem);
 			-webkit-transform: translateY(2rem);
@@ -3481,7 +3490,7 @@ p {
 			transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
 			opacity: 0;
 			visibility: hidden;
-		} */
+		}
 
 			#intro.hidden + #header .logo {
 				-moz-transform: translateY(0);
