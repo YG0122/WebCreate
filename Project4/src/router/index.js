@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import firebase from 'firebase'
 
-import Hello from '@/components/Hello'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import Home0 from '@/components/Home0'
@@ -22,14 +21,6 @@ const router = new Router({
       path: '/mainpage',
       name: 'MainPage',
       component: MainPage
-    },
-    {
-      path: '/hello',
-      name: 'Hello',
-      component: Hello,
-      meta: {
-        requiresAuth: true
-      }
     },
     {
       path: '/:userid/addpost',
