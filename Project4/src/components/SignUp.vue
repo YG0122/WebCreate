@@ -46,7 +46,7 @@ export default {
           .then(
             (user) => {
               db.collection('Users').add({ email: email, uid: firebase.auth().currentUser.uid, parentUid: uid })
-              this.$router.replace('../' + uid)
+              this.$router.replace('../' + uid + '/viewpost2')
             },
             (err) => {
               alert('Oops. ' + err.message)

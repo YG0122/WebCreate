@@ -96,6 +96,8 @@ export default {
 
       console.log('about to find user')
       console.log('uid: ', uid)
+      const title = this.$data.title
+      const content = this.$data.content
       db.collection('Users').where('uid', '==', uid).get()
         .then(function (querySnapshot) {
           querySnapshot.forEach(function (doc) {
@@ -107,14 +109,14 @@ export default {
                 email = email.substr(29)
               }
               i++
+              db.collection('Posts').add({Title: title, Content: content, Writer: email, Date: date, FormatDate: formatDate, ParentUid: path.substr(1, path.length - 9)})
             }
           })
         })
         .catch(function (err) {
           console.log(err)
         })
-
-      db.collection('Posts').add({Title: this.$data.title, Content: this.$data.content, Writer: email, Date: date, FormatDate: formatDate, ParentUid: path.substr(1, path.length - 9)})
+      console.log('parentuid: ', currentUser.parentUid)
       console.log('this router: ', this.$router.currentRoute.fullPath.substr(1, this.$router.currentRoute.fullPath.length - 9))
       this.$router.replace('./viewpost2')
     },
